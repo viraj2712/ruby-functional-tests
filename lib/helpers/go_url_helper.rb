@@ -37,5 +37,9 @@ module Helpers
       http_url('/admin/agents')
     end
 
+    def create_template_url
+      http_url('/api/admin/templates')
+    end
+
   end
 end

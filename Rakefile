@@ -47,6 +47,12 @@ task :clean do
   end
 end
 
+task :test_clean do
+  rm_rf 'target'
+  rm_rf 'reports'
+  mkdir_p 'target'
+end
+
 zips = %w(server agent).each_with_object({}) do |package, accumulator|
   accumulator[package] = if DEVELOPMENT_MODE
                            Dir[File.join('..', GO_TRUNK_DIRNAME, 'installers', 'target', 'distributions', 'zip', "go-#{package}*.zip")].first

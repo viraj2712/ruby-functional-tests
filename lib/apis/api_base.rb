@@ -14,26 +14,30 @@
 # limitations under the License.
 ##########################################################################
 
-step "SmokeConfiguration - setup" do
-  secure_configuration.setup 'secure-cruise-config.xml', 'password.properties'
+require 'capybara/dsl'
+require 'rest-client'
+
+module APIs
+  class APIBase
+    include Helpers
+    include Context
+
+
+    GET_TEMPLATE_URL =   http_url('/api/admin/templates')
+    CREATE_TEMPLATE_URL = http_url('/api/admin/templates')
+
+  def get(url, headers)
+    response= RestClient.get(url,headers)
+    rescue => e
+      raise "Get template API call failed Error message #{e.reponse.body}"
 end
 
-step "Basic Configuration - setup" do
-  basic_configuration.setup 'basic-cruise-config.xml'
-end
+    def post(url, payload, headers)
+      response = RestClient.post(url, payload, headers)
+    rescue => e
+      raise "Create Template API call failed. Error message #{e.reponse.body}"
+    end
 
-step "Multiple agents Configuration - setup" do
-  basic_configuration.setup 'multiple-agents-cruise-config.xml'
-end
 
-step "Config repos Configuration - setup" do
-  basic_configuration.setup 'with-config-repo-cruise-config.xml'
-end
-
-step "Config repo git repository - setup" do
-  basic_configuration.setup 'with-config-repo-cruise-config.xml'
-end
-
-step "Template apis Configuration - setup" do
-  basic_configuration.setup 'templates-apis-cruise-config.xml'
+  end
 end

@@ -14,26 +14,33 @@
 # limitations under the License.
 ##########################################################################
 
-step "SmokeConfiguration - setup" do
-  secure_configuration.setup 'secure-cruise-config.xml', 'password.properties'
-end
+module APIs
+  class Templates < APIBase
 
-step "Basic Configuration - setup" do
-  basic_configuration.setup 'basic-cruise-config.xml'
-end
+    def get(template)
+      get(GET_TEMPLATE_URL,{'Accept'=> 'application/vnd.go.cd.v3+json'})
+    end
 
-step "Multiple agents Configuration - setup" do
-  basic_configuration.setup 'multiple-agents-cruise-config.xml'
-end
+    end
 
-step "Config repos Configuration - setup" do
-  basic_configuration.setup 'with-config-repo-cruise-config.xml'
-end
+    def index(template)
 
-step "Config repo git repository - setup" do
-  basic_configuration.setup 'with-config-repo-cruise-config.xml'
-end
+    end
 
-step "Template apis Configuration - setup" do
-  basic_configuration.setup 'templates-apis-cruise-config.xml'
+    def create(template_name)
+      template = Template.new(name: "#{template_name}") do |t|
+        t << Stage.new(name: 'defaultStage') do |s|
+          s << Job.new(name: 'defaultJob') do |j|
+            j << ExecTask.new(attributes:{command: 'ls'})
+          end
+        end
+      end
+      post(CREATE_TEMPLATE_URL,template.to_json, {'Accept'=> 'application/vnd.go.cd.v3+json', 'Content-Type'=> 'application/json'})
+    end
+
+    def update(template)
+
+    end
+
+  end
 end

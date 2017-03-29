@@ -27,6 +27,7 @@ require 'context/scenario_state'
 require 'context/secure_configuration'
 require 'context/server'
 require 'context/pipeline'
+require 'context/template'
 require 'pages/app_base'
 require 'pages/login'
 require 'pages/agents_spa'
@@ -34,6 +35,8 @@ require 'pages/pipelinedashboard'
 require 'pages/environments_page'
 require 'pages/environments_edit_page'
 require 'pages/serverhealthmessages'
+require 'apis/api_base'
+require 'apis/templates'
 
 
 module Helpers
@@ -64,6 +67,14 @@ module Helpers
 
     def server_health_message
       Pages::ServerHealthMessage.new
+    end
+
+    def api_base
+      APIs::api_base.new
+    end
+
+    def templates_api
+      APIs::Templates.new
     end
 
     def basic_configuration

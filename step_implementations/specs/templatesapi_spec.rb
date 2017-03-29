@@ -14,26 +14,6 @@
 # limitations under the License.
 ##########################################################################
 
-step "SmokeConfiguration - setup" do
-  secure_configuration.setup 'secure-cruise-config.xml', 'password.properties'
-end
-
-step "Basic Configuration - setup" do
-  basic_configuration.setup 'basic-cruise-config.xml'
-end
-
-step "Multiple agents Configuration - setup" do
-  basic_configuration.setup 'multiple-agents-cruise-config.xml'
-end
-
-step "Config repos Configuration - setup" do
-  basic_configuration.setup 'with-config-repo-cruise-config.xml'
-end
-
-step "Config repo git repository - setup" do
-  basic_configuration.setup 'with-config-repo-cruise-config.xml'
-end
-
-step "Template apis Configuration - setup" do
-  basic_configuration.setup 'templates-apis-cruise-config.xml'
+step "Create a template <template>" do | template |
+  templates_api.create(template)
 end
