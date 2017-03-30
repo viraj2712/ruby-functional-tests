@@ -13,10 +13,12 @@ Setup of contexts
 
 
 * Create a template "T2"
- Edit job name as "updatedjob" for template "T2"
- Edit stage name as "defaultStage" for template "T1"
-Verify template "T2" has job name as "updatedjob"
- Verify template "T1" has stage name as "defaultStage"
+* For template "T2" update stage "1" job "1" name as "build_and_test"
+* For template "T1" update stage "1" name as "build"
+* Get all templates
+* Verify template "T1" stage "1" name is "build"
+* Verify template "T2" stage "1" job "1" name is "build_and_test"
+
 
 teardown
 _______________

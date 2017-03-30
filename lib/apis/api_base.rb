@@ -23,21 +23,22 @@ module APIs
     include Context
 
 
-    GET_TEMPLATE_URL =   http_url('/api/admin/templates')
-    CREATE_TEMPLATE_URL = http_url('/api/admin/templates')
-
-  def get(url, headers)
-    response= RestClient.get(url,headers)
-    rescue => e
-      raise "Get template API call failed Error message #{e.reponse.body}"
-end
+    def get(url, headers)
+      RestClient.get(url,headers)
+      rescue => e
+        raise "Get template API call failed Error message #{e.reponse.body}"
+    end
 
     def post(url, payload, headers)
-      response = RestClient.post(url, payload, headers)
+      RestClient.post(url, payload, headers)
     rescue => e
       raise "Create Template API call failed. Error message #{e.reponse.body}"
     end
-
+    def put(url, payload, headers)
+      RestClient.put(url, payload, headers)
+    rescue => e
+      raise "Edit Template API call failed. Error message #{e.reponse.body}"
+    end
 
   end
 end

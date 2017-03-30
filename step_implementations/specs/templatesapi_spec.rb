@@ -17,3 +17,17 @@
 step "Create a template <template>" do | template |
   templates_api.create(template)
 end
+
+step "For template <template> update stage <scounter> job <jcounter> name as <name>" do | template, scounter, jcounter, jobname |
+  response = templates_api.get_template(template)
+  res = JSON.parse(response.body)
+  res['stages'][scounter.to_i-1]['jobs'][jcounter.to_i-1]['name']= jobname
+  templates_api.update(template, res.to_json, response.headers[:etag])
+end
+
+step "For template <template> update stage <scounter> name as <stagename>" do | template, scounter, stagename |
+  response = templates_api.get_template(template)
+  res = JSON.parse(response.body)
+  res['stages'][scounter.to_i-1]['name']= stagename
+  templates_api.update(template, res.to_json, response.headers[:etag])
+end

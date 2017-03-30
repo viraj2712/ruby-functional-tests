@@ -17,11 +17,10 @@
 module APIs
   class Templates < APIBase
 
-    def get(template)
-      get(GET_TEMPLATE_URL,{'Accept'=> 'application/vnd.go.cd.v3+json'})
+    def get_template(template_name)
+      get("#{template_url}/#{template_name}", {'Accept'=> 'application/vnd.go.cd.v3+json'})
     end
 
-    end
 
     def index(template)
 
@@ -35,11 +34,11 @@ module APIs
           end
         end
       end
-      post(CREATE_TEMPLATE_URL,template.to_json, {'Accept'=> 'application/vnd.go.cd.v3+json', 'Content-Type'=> 'application/json'})
+      post("#{template_url}",template.to_json, {'Accept'=> 'application/vnd.go.cd.v3+json', 'Content-Type'=> 'application/json'})
     end
 
-    def update(template)
-
+    def update(template_name, payload, etag)
+      put("#{template_url}/#{template_name}",payload,{'Accept'=> 'application/vnd.go.cd.v3+json','Content-Type'=> 'application/json','If-Match'=> etag})
     end
 
   end

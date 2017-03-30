@@ -19,6 +19,7 @@ require 'bundler'
 require 'owasp_zap'
 require 'pry'
 require 'test/unit'
+require 'Json'
 Bundler.setup(:default)
 Bundler.require
 
