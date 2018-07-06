@@ -55,3 +55,7 @@ step 'Verify modification <modification_number> is checked in by <user_name> wit
   assert_true stage_details_page.verify_comment_in_modification(modification_number, comment)
   assert_true stage_details_page.verify_modification_triggered_by(modification_number, user_name)
 end
+
+step 'Verify stage details page is displayed' do
+  stage_details_page.load_validation
+end

@@ -48,6 +48,7 @@ require 'pages/pipeline_history_page'
 require 'pages/admin_pipeline_page'
 require 'pages/stage_details_page'
 require 'pages/global_analytics_page'
+require 'pages/vsm_page'
 
 
 
@@ -127,6 +128,10 @@ module Helpers
 
     def admin_pipeline_page
       Pages::AdminPipelinePage.new
+    end
+
+    def vsm_page
+      Pages::ValueStreamMap.new
     end
 
     def basic_configuration

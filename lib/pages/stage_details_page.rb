@@ -22,6 +22,8 @@ module Pages
     elements :materials, ".material"
     elements :material_names, ".material_name"
 
+    load_validation { has_css?('.page_name', text: "Stage Details")}
+
     def verify_latest_revision_for_modification(modification_number)
       latest_revision = Context::GitMaterials.new(basic_configuration.material_url_for(scenario_state.self_pipeline)).latest_revision
       latest_revision == getRevisionForModification(modification_number)
